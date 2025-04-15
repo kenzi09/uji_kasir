@@ -3,8 +3,6 @@
 <head>
     <title>Tambah Produk</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    {{-- Tambahkan CKEditor --}}
-    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 </head>
 <body>
 
@@ -75,11 +73,6 @@
         </div>
     </div>
 </div>
-
-{{-- CKEditor --}}
-<script>
-    CKEDITOR.replace('description');
-</script>
 
 </body>
 </html>

@@ -45,6 +45,7 @@
 <body>
 
 <div class="container py-5">
+    
     <div class="row g-4 align-items-stretch">
         <div class="col-md-5">
             <div class="card shadow-sm card-custom h-100">
@@ -64,6 +65,7 @@
                         </div>
                     </div>
                     <p class="text-muted mt-auto mb-0">Stok: <strong>{{ $produk->stock }}</strong></p>
+                    <a href="{{ route('admin.produks.index') }}" class="btn btn-secondary">Kembali</a>
                 </div>
             </div>
         </div>
