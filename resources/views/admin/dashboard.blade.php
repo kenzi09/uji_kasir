@@ -20,6 +20,7 @@
                 <h4 class="fw-semibold">Selamat Datang, Admin!</h4>
             </div>
 
+            <!-- Grafik Statistik Penjualan -->
             <div class="col-xl-8 col-lg-7 col-md-12">
                 <div class="card shadow-sm rounded-4">
                     <div class="card-body">
@@ -29,10 +30,11 @@
                 </div>
             </div>
 
+            <!-- Grafik Pie Persentase Penjualan Produk Secara Keseluruhan -->
             <div class="col-xl-4 col-lg-5 col-md-12">
                 <div class="card shadow-sm rounded-4">
                     <div class="card-body">
-                        <h5 class="card-title">Persentase Penjualan Produk</h5>
+                        <h5 class="card-title">Persentase Penjualan Produk Secara Keseluruhan</h5>
                         <canvas id="productChart" height="220"></canvas>
                     </div>
                 </div>
@@ -41,10 +43,12 @@
     </div>
 </div>
 
+<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    // Grafik Batang: Statistik Penjualan per Tanggal
     const salesCtx = document.getElementById('salesChart').getContext('2d');
-    const salesData = {/* salesData */};
+    const salesData = @json($salesData);
 
     new Chart(salesCtx, {
         type: 'bar',
@@ -73,9 +77,10 @@
         }
     });
 
+    // Grafik Pie: Persentase Penjualan Produk Secara Keseluruhan
     const productCtx = document.getElementById('productChart').getContext('2d');
-    const produkLabels = [/* label array */];
-    const produkData = [/* data array */];
+    const produkLabels = @json(array_keys($produkSales)); // Menggunakan data penjualan total
+    const produkData = @json(array_values($produkSales)); // Jumlah produk terjual secara keseluruhan
 
     new Chart(productCtx, {
         type: 'pie',
@@ -94,10 +99,19 @@
             plugins: {
                 legend: {
                     position: 'bottom'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.raw || 0;
+                            const percentage = ((value / <?php echo array_sum($produkSales); ?>) * 100).toFixed(2);
+                            return `${label}: ${value} terjual (${percentage}%)`;
+                        }
+                    }
                 }
             }
         }
     });
 </script>
-
 @endsection

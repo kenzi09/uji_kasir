@@ -14,6 +14,8 @@ Route::get('/', function () {
 
 Route::get('/login', [UserController::class, 'index'])->name('auth.login');
 Route::post('/login-proses', [UserController::class, 'login_proses'])->name('login-proses');
+Route::get('/signup', [UserController::class, 'signup'])->name('signup');
+Route::post('/signup-proses', [AkunController::class, 'store'])->name('signup-proses');
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -48,6 +50,7 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
     
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
+    // CRUD Produk
     Route::get('/produks', [ProdukController::class, 'index'])->name('produks.index');
     Route::get('/produks/create', [ProdukController::class, 'create'])->name('produks.create');
     Route::post('/produks/store', [ProdukController::class, 'store'])->name('produks.store');
@@ -56,14 +59,22 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
     Route::put('/produks/{id}', [ProdukController::class, 'update'])->name('produks.update');
     Route::post('/produk/updateStock/{id}', [ProdukController::class, 'updateStock'])->name('produk.updateStock');
     Route::delete('/produks/{id}', [ProdukController::class, 'destroy'])->name('produks.destroy');
+    Route::get('/produks/export', [ProdukController::class, 'export'])->name('produks.export');
 
+    // CRUD User
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [AkunController::class, 'index'])->name('index');
         Route::get('/create', [AkunController::class, 'create'])->name('create');
         Route::post('/store', [AkunController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [AkunController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [AkunController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [AkunController::class, 'destroy'])->name('destroy');
     });
 
-    
+    // Pembelian
     Route::get('/pembelian', [PembelianController::class, 'indexAdmin'])->name('pembelian.index');
     Route::get('/pembelian/export', [PembelianController::class, 'export'])->name('pembelian.export');
+    Route::get('/pembelian/{id}', [PembelianController::class, 'show'])->name('pembelian.show');
+
+    Route::get('/pembelian/{id}/download-pdf', [PembelianController::class, 'downloadPdf'])->name('pembelian.downloadPdf');
 });

@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth; // Tambahkan ini
+// use App\Exports\ProdukExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProdukExport;
+
 
 class ProdukController extends Controller
 {
+    public function export()
+    {
+        return Excel::download(new ProdukExport, 'data_produk.xlsx');
+    }
+    
     public function index() : View
     {
         $produks = Produk::latest()->paginate(10);

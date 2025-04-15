@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f8f9fa;
+            background-color: #b42323 !important;
         }
 
         .login-container {
@@ -99,39 +99,34 @@
             
             <form action="{{ route('signup-proses') }}" method="POST">
                 @csrf
-
+            
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama</label>
                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                 </div>
-
+            
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                 </div>
-
-                <div class="mb-3">
-                    <label for="role" class="form-label">Role</label>
-                    <select name="role" class="form-select" required>
-                        <option value="">-- Pilih Role --</option>
-                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="petugas" {{ old('role') == 'petugas' ? 'selected' : '' }}>Petugas</option>
-                    </select>
-                </div>
-
+            
+                <!-- Role otomatis "Petugas" -->
+                <input type="hidden" name="role" value="petugas">
+            
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" required>
                 </div>
-
+            
                 <div class="mb-3">
                     <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
                     <input type="password" class="form-control" name="password_confirmation" required>
                 </div>
-
+            
                 <a href="{{ route('auth.login') }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-success">Simpan</button>
             </form>
+            
         </div>
     </div>
 
@@ -148,4 +143,3 @@
 </body>
 
 </html>
-

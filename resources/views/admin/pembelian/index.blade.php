@@ -15,21 +15,22 @@
                         <li class="breadcrumb-item active" aria-current="page">Pembelian</li>
                     </ol>
                 </nav>
-                <h1 class="mb-0 fw-bold">Data Pembelian</h1> 
+                <h1 class="mb-0 fw-bold">Data Pembelian</h1>
             </div>
         </div>
     </div>
 
     <div class="container mt-5">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Data Pembelian</h5>
+            <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #b40f0f; color: white;">
+                <h5 class="mb-0" style="color: white;">Data Pembelian</h5>
                 <div class="d-flex gap-2">
                     <a href="{{ route('admin.pembelian.export') }}" class="btn btn-light btn-sm">
                         Export Penjualan (.xlsx)
                     </a>
                 </div>
             </div>
+            
 
             <div class="card-body">
                 <div class="mb-3 d-flex justify-content-between align-items-center">
@@ -46,7 +47,7 @@
                     <div>
                         <form method="GET" action="{{ route('admin.pembelian.index') }}" class="d-flex">
                             <input type="text" name="search" class="form-control w-auto d-inline-block me-2" placeholder="Cari nama member..." value="{{ request('search') }}">
-                            <button type="submit" class="btn btn-primary btn-sm">Cari</button>
+                            <button type="submit" class="btn btn-sm white" style="background-color: #b40f0f; color: white;">Cari</button>
                             @if(request('search'))
                                 <a href="{{ route('admin.pembelian.index') }}" class="btn btn-secondary btn-sm ms-2">Reset</a>
                             @endif
@@ -57,7 +58,7 @@
                 <table class="table table-bordered table-striped align-middle">
                     <thead class="table-primary">
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th>Nama Pelanggan</th>
                             <th>Tanggal Pembelian</th>
                             <th>Total Harga</th>
@@ -77,7 +78,7 @@
                                 <td class="text-center">
                                     <a href="{{ route('admin.pembelian.show', $penjualan->id) }}" class="btn btn-info btn-sm mb-1">
                                         <i class="mdi mdi-eye"></i> Lihat
-                                    </a>                                                                  
+                                    </a>
                                     <a href="{{ route('admin.pembelian.downloadPdf', $penjualan->id) }}" class="btn btn-success btn-sm">
                                         <i class="mdi mdi-download"></i> Unduh PDF
                                     </a>
@@ -90,7 +91,6 @@
                         @endforelse
                     </tbody>
                 </table>
-
                 {{-- Pagination --}}
                 <div class="mt-4 d-flex justify-content-between align-items-center flex-wrap">
                     <div class="text-muted small">

@@ -18,20 +18,20 @@
 
     <div class="container mt-4">
         <div class="card shadow-sm">
-            <div class="card-header bg-success text-white">
-                <h5 class="mb-0">Daftar Produk</h5>
+            <div class="card-header" style="background-color: #b40f0f; color: white;">
+                <h5 class="mb-0" style="color: white;">Daftar Produk</h5>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped align-middle">
-                    <thead class="table-success">
+                    <thead style="background-color: #650909; color: white;">
                         <tr>
-                            <th>#</th>
-                            <th>Gambar</th>
-                            <th>Nama Produk</th>
-                            <th>Deskripsi</th>
-                            <th>Harga</th>
-                            <th>Stok</th>
-                            <th>Dibuat Pada</th>
+                            <th style="color: white;">#</th>
+                            <th style="color: white;">Gambar</th>
+                            <th style="color: white;">Nama Produk</th>
+                            <th style="color: white;">Deskripsi</th>
+                            <th style="color: white;">Harga</th>
+                            <th style="color: white;">Stok</th>
+                            <th style="color: white;">Dibuat Pada</th>
                         </tr>
                     </thead>
                     <tbody>

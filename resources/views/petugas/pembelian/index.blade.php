@@ -15,15 +15,15 @@
                         <li class="breadcrumb-item active" aria-current="page">Pembelian</li>
                     </ol>
                 </nav>
-                <h1 class="mb-0 fw-bold">Data Pembelian</h1> 
+                <h1 class="mb-0 fw-bold">Data Pembelian</h1>
             </div>
         </div>
     </div>
 
     <div class="container mt-5">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Data Pembelian</h5>
+            <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #b40f0f; color: white;">
+                <h5 class="mb-0" style="color: white;">Data Pembelian</h5>
                 <div class="d-flex gap-2">
                     <a href="{{ route('petugas.pembelian.create') }}" class="btn btn-light btn-sm">
                         <i class="mdi mdi-plus"></i> Tambah Pembelian
@@ -60,7 +60,7 @@
                 <table class="table table-bordered table-striped align-middle">
                     <thead class="table-primary">
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th>Nama Pelanggan</th>
                             <th>Tanggal Pembelian</th>
                             <th>Total Harga</th>
@@ -80,7 +80,7 @@
                                 <td class="text-center">
                                     <a href="{{ route('petugas.pembelian.show', $penjualan->id) }}" class="btn btn-info btn-sm mb-1">
                                         <i class="mdi mdi-eye"></i> Lihat
-                                    </a>                                                                  
+                                    </a>
                                     <a href="{{ route('petugas.pembelian.downloadPdf', $penjualan->id) }}" class="btn btn-success btn-sm">
                                         <i class="mdi mdi-download"></i> Unduh PDF
                                     </a>
@@ -95,7 +95,7 @@
                 </table>
 
                 {{-- Pagination --}}
-                <<div class="mt-4 d-flex justify-content-between align-items-center flex-wrap">
+                <div class="mt-4 d-flex justify-content-between align-items-center flex-wrap">
                     <div class="text-muted small">
                         Menampilkan {{ $penjualans->firstItem() }} sampai {{ $penjualans->lastItem() }} dari total {{ $penjualans->total() }} entri
                     </div>
@@ -103,7 +103,6 @@
                         {{ $penjualans->withQueryString()->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>

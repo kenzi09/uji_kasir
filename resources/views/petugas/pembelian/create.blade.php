@@ -1,3 +1,4 @@
+
 @extends('layout.sidebar')
 @section('content')
 
@@ -13,7 +14,7 @@
             <div class="col">
                 <div class="card h-100 p-2">
                     <label style="cursor: pointer;">
-                        <input type="checkbox" name="produk[{{ $produk->id }}][pilih]" value="1" class="form-check-input me-2 produk-checkbox"
+                        <input type="checkbox" name="produk[{{ $produk->id }}][pilih]" value="{{$produk->id}}" class="form-check-input me-2 produk-checkbox"
                                data-id="{{ $produk->id }}"
                                data-price="{{ $produk->price }}">
                         <img src="{{ asset('storage/produks/' . $produk->image) }}" class="card-img-top" alt="{{ $produk->title }}" style="height: 150px; object-fit: cover;">
@@ -41,7 +42,7 @@
                         <strong>Sub Total: Rp. <span id="subtotal">0</span></strong>
                     </div>
                     <div class="col-md-6 text-end">
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Beli Sekarang</button>
+                        <button type="submit" style="background-color: #840f0f; color: white;" class="btn w-100 rounded-pill">Beli Sekarang</button>
                     </div>
                 </div>
             </div>

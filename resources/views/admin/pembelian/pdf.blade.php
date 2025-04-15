@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Struk Pembelian</title>
     <style>
         body { font-family: sans-serif; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
@@ -15,10 +13,10 @@
 </head>
 <body>
     <h3>Indo April</h3>
-    <p>Member Status: Member</p>
-    <p>No. HP: 08123456789</p>
-    <p>Bergabung Sejak: 2022-01-10</p>
-    <p>Poin Member: 120</p>
+    <p>Member Status: {{ $pembelian->members ? 'Member' : 'Bukan Member' }}</p>
+    <p>No. HP: {{ $pembelian->members->no_hp ?? '-' }}</p>
+    <p>Bergabung Sejak: {{ $pembelian->members->created_at ?? '-' }}</p>
+    <p>Poin Member: {{ $pembelian->members->points ?? '-' }}</p>
 
     <table>
         <thead>
@@ -30,18 +28,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Minyak Goreng 1L</td>
-                <td>2</td>
-                <td>Rp. 15.000</td>
-                <td>Rp. 30.000</td>
-            </tr>
-            <tr>
-                <td>Beras 5kg</td>
-                <td>1</td>
-                <td>Rp. 65.000</td>
-                <td>Rp. 65.000</td>
-            </tr>
+            @foreach ($pembelian->detailPenjualan as $detail)
+                <tr>
+                    <td>{{ $detail->produk->nama_produk }}</td>
+                    <td>{{ $detail->qty }}</td>
+                    <td>Rp. {{ number_format($detail->price, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($detail->sub_total, 0, ',', '.') }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 
@@ -49,23 +43,23 @@
         <tr>
             <td>Poin Digunakan</td>
             <td>:</td>
-            <td>20</td>
+            <td>{{ $pembelian->point_used ?? 0 }}</td>
             <td class="text-end"><strong>Total Harga</strong></td>
-            <td class="text-end">Rp. 95.000</td>
+            <td class="text-end">Rp. {{ number_format($pembelian->total_payment, 0, ',', '.') }}</td>
         </tr>
         <tr>
             <td colspan="3"></td>
             <td class="text-end"><strong>Harga Setelah Poin</strong></td>
-            <td class="text-end">Rp. 90.000</td>
+            <td class="text-end">Rp. {{ number_format($pembelian->total_payment, 0, ',', '.') }}</td>
         </tr>
         <tr>
             <td colspan="3"></td>
             <td class="text-end"><strong>Total Kembalian</strong></td>
-            <td class="text-end">Rp. 10.000</td>
+            <td class="text-end">Rp. {{ number_format($pembelian->change ?? 0, 0, ',', '.') }}</td>
         </tr>
     </table>
 
-    <p class="mt-5">2025-04-15 14:40 | Admin</p>
+    <p class="mt-5">{{ $pembelian->created_at }} | {{ $pembelian->user->nama ?? 'Petugas' }}</p>
     <p><strong>Terima kasih atas pembelian Anda!</strong></p>
 </body>
 </html>

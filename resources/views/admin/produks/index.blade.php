@@ -10,7 +10,7 @@
                               <li class="breadcrumb-item active" aria-current="page">Produk</li>
                             </ol>
                           </nav>
-                        <h1 class="mb-0 fw-bold">Daftar Produk</h1> 
+                        <h1 class="mb-0 fw-bold">Daftar Produk</h1>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,8 @@
 
                         <div class="card border-0 shadow-sm rounded">
                             <div class="card-body">
-                                <a href="{{ route('admin.produks.create') }}" class="btn btn-md btn-primary mb-3">Tambah Produk</a>
+                                <a href="{{ route('admin.produks.create') }}" class="btn btn-md mb-3" style="background-color: #b40f0f; color: white;">Tambah Produk</a>
+                                <a href="{{ route('admin.produks.export') }}" class="btn btn-md mb-3" style="background-color: #650909; color: white;">Ekspor ke Excel</a>
                                 <table class="table table-bordered text-center">
                                     <thead class="table-light">
                                         <tr>
@@ -53,12 +54,12 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                                 </form>
-                                        
+
                                                 <!-- Tombol Tambah Stok (Modal Trigger) -->
                                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#tambahStokModal{{ $produk->id }}">
                                                     Tambah Stok
                                                 </button>
-                                        
+
                                                 <!-- Modal Tambah Stok -->
                                                 <div class="modal fade" id="tambahStokModal{{ $produk->id }}" tabindex="-1" aria-labelledby="tambahStokLabel{{ $produk->id }}" aria-hidden="true">
                                                     <div class="modal-dialog">
@@ -85,7 +86,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        
+
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -95,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
